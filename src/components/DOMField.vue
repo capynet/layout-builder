@@ -1,60 +1,47 @@
+<script setup lang="ts">
+import Vuedraggable from "vuedraggable";
+import RawJson from "./RawJson.vue";
+import AddDOMField from "./AddDOMField.vue";
+import {ref} from "vue";
+
+defineProps<{
+  row: Object,
+  index: Number,
+}>()
+
+let dragging = ref(false);
+</script>
+
 <template>
   <div class="row-wrapper">
-    <AddDOMField pos="before" :index="index" />
+    <AddDOMField pos="before" :index="index"/>
 
     <div
-      class="lc-field lb-grid"
-      :style="`grid-template-columns: repeat(${this.row.cols.length}, 1fr);`"
+        class="lc-field lb-grid"
+        :style="`grid-template-columns: repeat(${this.row.cols.length}, 1fr);`"
     >
       <div v-for="col in row.cols" :key="col">
-        <draggable
-          :list="col.components"
-          item-key="cell"
-          class="cell-components"
-          ghost-class="ghost"
-          @start="dragging = true"
-          @end="dragging = false"
-          group="cell"
+        <Vuedraggable
+            :list="col.components"
+            item-key="cell"
+            class="cell-components"
+            ghost-class="ghost"
+            @start="dragging = true"
+            @end="dragging = false"
+            group="cell"
         >
           <template #item="{ element }">
             <div class="lc-component" v-html="element.preview || element.label"></div>
           </template>
-        </draggable>
+        </Vuedraggable>
 
         <!-- <RawJson :data="col" title="Raw col" /> -->
       </div>
     </div>
-    <AddDOMField pos="after" :index="index" />
+    <AddDOMField pos="after" :index="index"/>
   </div>
 </template>
 
-<script>
-import draggable from "vuedraggable";
-import RawJson from "./RawJson.vue";
-import AddDOMField from "./AddDOMField.vue";
-
-export default {
-  name: "DOMField",
-  display: "domField",
-
-  components: {
-    draggable,
-    RawJson,
-    AddDOMField,
-  },
-
-  props: {
-    row: Object,
-    index: Number,
-  },
-
-  data() {
-    return {
-      dragging: false
-    };
-  },
-};
-</script>
 
 <style scoped lang="scss">
 .ghost {
@@ -99,6 +86,7 @@ export default {
     top: 0;
     transform: translate(-50%, -50%);
   }
+
   &[data-pos="after"] {
     bottom: 0;
     transform: translate(-50%, 50%);

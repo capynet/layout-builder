@@ -1,51 +1,30 @@
+<script setup lang="ts">
+import {ref} from 'vue'
+import Vuedraggable from "vuedraggable";
+import {useLayoutStore} from "@/stores/layout";
+
+const store = useLayoutStore();
+let dragging = ref(false);
+</script>
+
 <template>
   <section class="available-components">
-    <draggable
-      :list="components"
-      item-key="components"
-      class="draggable-available-components"
-      ghost-class="ghost"
-      @start="dragging = true"
-      @end="dragging = false"
-      group="cell"
+    <Vuedraggable
+        :list="store.components"
+        item-key="components"
+        class="draggable-available-components"
+        ghost-class="ghost"
+        @start="dragging = true"
+        @end="dragging = false"
+        group="cell"
     >
       <template #item="{ element }">
         <div class="lc-component" v-html="element.preview || element.label"></div>
       </template>
-    </draggable>
+    </Vuedraggable>
   </section>
 </template>
 
-<script>
-import { computed } from 'vue'
-import { useStore } from 'vuex'
-import draggable from "vuedraggable";
-
-
-export default {
-  name: "availableComponents",
-  display: "AvailableComponents",
-
-  components: {
-    draggable,
-  },
-
-  setup() {
-    const store = useStore()
-
-    return {
-      components: computed(() => store.state.components),
-    };
-  },
-
-  data() {
-    return {
-      dragging: false,
-    };
-  },
-
-};
-</script>
 
 <style scoped lang="scss">
 .lc-component {

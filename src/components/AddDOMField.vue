@@ -1,3 +1,47 @@
+<script setup lang="ts">
+
+import {useLayoutStore} from "@/stores/layout";
+import type Row from "@/models/Row";
+
+defineProps<{
+  pos: String,
+  index: Number
+}>()
+
+const store = useLayoutStore()
+
+/**
+ * Add a new field to the layout.
+ *
+ * @param {String} pos Indicates if the field should be added before or after the current field.
+ * @param {Number} index Current field position used as reference.
+ * @param {Number} cols Number of columns to add.
+ */
+const addRow = (pos: string, index: number, cols: number) => {
+  // const position = index + (pos === 'after' ? 1 : 0)
+  // const rowTpl: Row = {components: [], cols: []};
+  //
+  // for (let i = 0; i < cols; i++) {
+  //   // colTpl must be inside the loop to avoid references to the same object.
+  //   const colTpl = {"components": []};
+  //   rowTpl.cols.push(colTpl);
+  // }
+  //
+  // store.addRow(position, rowTpl);
+}
+
+
+const possibleFields = [
+  {label: '1 cols', value: 1},
+  {label: '2 cols', value: 2},
+  {label: '3 cols', value: 3},
+  {label: '4 cols', value: 4},
+  {label: '6 cols', value: 6},
+  {label: '12 cols', value: 12},
+];
+
+</script>
+
 <template>
   <div class="add-row" :data-pos="pos" :index="index">
     <span>Add row {{ pos }}</span>
@@ -10,54 +54,7 @@
   </div>
 </template>
 
-<script>
-import { useStore } from 'vuex'
 
-export default {
-  props: {
-    pos: String,
-    index: Number
-  },
-
-  setup() {
-    const store = useStore()
-
-    /**
-     * Add a new field to the layout.
-     * 
-     * @param {String} pos Indicates if the field should be added before or after the current field.
-     * @param {Number} index Current field position used as reference.
-     * @param {Number} cols Number of columns to add.
-     */
-    const addRow = (pos, index, cols) => {
-      const position = index + (pos === 'after' ? 1 : 0)
-      const rowTpl = { "cols": [] };
-
-      for (let i = 0; i < cols; i++) {
-        // colTpl must be inside the loop to avoid references to the same object.
-        const colTpl = { "components": [] };
-        rowTpl.cols.push(colTpl);
-      }
-
-      store.commit("addRow", { position, rowTpl });
-    }
-
-
-    return {
-      addRow,
-      possibleFields: [
-        { label: '1 cols', value: 1 },
-        { label: '2 cols', value: 2 },
-        { label: '3 cols', value: 3 },
-        { label: '4 cols', value: 4 },
-        { label: '6 cols', value: 6 },
-        { label: '12 cols', value: 12 },
-      ],
-    };
-  },
-
-};
-</script>
 
 <style scoped lang="scss">
 .add-row {
