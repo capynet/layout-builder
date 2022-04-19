@@ -3,14 +3,17 @@ import {defineStore} from 'pinia'
 export const useLayoutStore = defineStore({
     id: 'counter',
     state: () => ({
-        layout: []
+        // Full layout structure (Layout -> rows -> cells -> allocated components)
+        layout: [],
+        // Components not allocated into the layout.
+        freeComponents: [],
     }),
     // getters: {
     //     doubleCount: (state) => state.counter * 2
     // },
     // actions: {
-    //     increment() {
-    //         this.counter++
+    //     addRow(state, { position, rowTpl }) {
+    //         state.layout.rows.splice(position, 0, rowTpl);
     //     }
     // }
 })

@@ -1,0 +1,47 @@
+{
+  "layout": {
+    "rows": [
+      {
+        "cols": [
+          {
+            "components": []
+          },
+          {
+            "components": []
+          },
+          {
+            "components": []
+          }
+        ]
+      },
+      {
+        "cols": [
+          {
+            "components": []
+          },
+          {
+            "components": []
+          }
+        ]
+      }
+    ]
+  },
+
+  "components": [
+    {
+      "id": "slider-1",
+      "label": "Slider hero",
+      "preview": "<h1>This is a preview for the slider</h1><p>In this case is just a text sample but in here you may put a simplified shape of the component of even an image.</p>"
+    },
+    {
+      "id": "image-with-text-2",
+      "label": "Image of people dancing with an intro",
+      "preview": "<h3>This is a preview for the text component</h3><p>In this case is just a text sample but in here you may put a simplified shape of the component of even an image.</p>"
+    },
+    {
+      "id": "no-prev-comp",
+      "label": "Component without preview.",
+      "preview": ""
+    }
+  ]
+}
