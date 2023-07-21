@@ -8,7 +8,7 @@ store.pullFreeComponents().then(r => console.log(r))
 
 const LayoutBuilder = defineAsyncComponent(() => import('@/components/LayoutBuilder.vue'))
 
-let builderLaunched = ref(false);
+let builderLaunched = ref(true);
 
 const launch = (e: Event): void => {
   e.preventDefault();

@@ -35,7 +35,7 @@ let dragging = ref(false);
           </template>
         </Vuedraggable>
 
-        <!-- <RawJson :data="col" title="Raw col" /> -->
+        <RawJson :data="col" title="Raw col" />
       </div>
     </div>
     <AddDOMField pos="after" :index="index"/>
