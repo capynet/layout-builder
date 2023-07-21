@@ -4,13 +4,15 @@ import Vuedraggable from "vuedraggable";
 import {useLayoutStore} from "../stores/layout.ts";
 
 const store = useLayoutStore();
+store.freeComponents = await store.pullFreeComponents()
+
 let dragging = ref(false);
 </script>
 
 <template>
   <section class="available-components">
     <Vuedraggable
-      :list="store.components"
+      :list="store.freeComponents"
       item-key="components"
       class="draggable-available-components"
       ghost-class="ghost"
